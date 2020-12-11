@@ -914,6 +914,10 @@ footer > .row >.col-3 > ul > li > a > i > span{
   padding:5px;
   margin: 3px;
 }
+.tags-box  span{
+  font-size: 12px;
+  font-weight: 400;
+}
 
 /* copy */
 
