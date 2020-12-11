@@ -35,11 +35,13 @@
   </head>
   <body>
     <div id="root">
+
+
       <!-- header due righe: prima riga social icons, shopping menu  -->
       <header>
         <!-- prima riga  -->
         <div class="divider">
-          <nav class="secondary_nav ">
+          <nav class="secondary_nav " :class=" activeNav == true ? 'd-none' : '' ">
             <div class="container">
               <div class="row  ">
                 <div class="col-2 d-flex justify-content-start align-items-center">
@@ -69,9 +71,10 @@
           </nav>
         </div>
         <!-- seconda riga  -->
-        <nav id="nav" :class='{sticky:activeNav}' class="main_nav   d-flex align-items-center">
-            <div class="container " >
-              <div class="row  " :class="toggleNavClass()">
+        <nav  id="nav"  class="main_nav d-flex align-items-center"
+               :class="activeNav === true ? 'sticky' : '' ">
+            <div  class="container ">
+              <div class="row " >
                 <div class="col-2 d-flex justify-content-start align-items-center">
                   <div class="logo d-flex justify-content-center align-items-center">
                     <img src="img/logo2x.png" alt="avada classi shop">
@@ -102,9 +105,9 @@
       <section class="slider d-flex align-items-center">
           <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner"
-                 v-for="slide in slider">
-               <div class="carousel-item active"
-                    :class="">
+                 v-for="(slide,i) in slider">
+               <div class="carousel-item"
+                    :class="i === imageIndex ? 'active' : 'd-none' ">
                    <img :src="slide.src" class="d-block w-100" :alt="slide.name">
                    <div class="carousel-caption d-none d-md-block">
                       <h2>{{slide.title}}</h2>
@@ -118,17 +121,477 @@
                       </div>
                    </div>
                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </a>
+             </div>
+             <div class="carousel-control-prev">
+                 <a class="prev" href=""
+                    @click="prev()" @keyup="prev"
+                    role="button" >
+                    <i class="fas fa-chevron-left"></i>
+                 </a>
+             </div>
+             <div class="carousel-control-next ">
+                 <a class="next" href=""
+                    @click="next()" @keyup="next"
+                    role="button">
+                   <i class="fas fa-chevron-right"></i>
+                 </a>
+             </div>
           </div>
       </section>
+
+      <!-- featured -->
+      <section class=" product featured">
+        <div class="container">
+          <div class="row d-flex ">
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <div class="lines"></div>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <h2> Featured products</h2>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center">
+                <div class="lines"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col  d-flex  align-items-center justify-content-center">
+                <p>Must have products from our top sellers</p>
+              </div>
+          </div>
+          <div class="row ">
+            <div class="col type-button d-flex  align-items-center justify-content-center  ">
+
+            </select>
+              <div @click='' class="type-box d-flex  align-items-center justify-content-center "> <span>Men</span> </div>
+              <div @click='' class="type-box d-flex  align-items-center justify-content-center"> <span>Women</span> </div>
+              <div @click='' class="type-box d-flex  align-items-center justify-content-center"> <span>Accesories</span> </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col  d-flex align-items-center justify-content-center">
+              <div class="top-seller "
+                    v-for=" product in topProduct">
+                <div class="  product-box">
+                  <div class=" img d-flex  align-items-end justify-content-center">
+                    <img :src="product.img" alt="product.name">
+                  </div>
+                  <div class="  img-overlay  d-flex  flex-column align-items-center justify-content-center">
+                      <a href="#" > <i class="fas fa-shopping-cart"> Add to cart</i></a>
+                      <a href="#"> <i class="fas fa-ellipsis-v"> Details</i></a>
+                  </div>
+
+                  <div class=" product_text">
+                    <h3> {{product.name}}</h3>
+                    <span>{{product.tags}}</span>
+                    <div class="price ">
+                      <span> {{product.realPrice}}</span>
+                      <span> {{product.price}}</span>
+                    </div>
+                  </div>
+               </div>
+             </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+      <!-- calltoaction -->
+      <section class="cta_season">
+          <div class="row d-flex flex-row align-items-center justify-content-center">
+            <div class="col-4 winter d-flex flex-column align-items-center justify-content-end">
+              <h2>Winter Collection</h2>
+              <h4>STYLISH AND WARM</h4>
+              <button class="slider_button_small" type="button" name="button"> VIEW MORE</button>
+            </div>
+            <div class="col-4 spring d-flex flex-column align-items-center justify-content-end">
+              <h2>Spring Collection</h2>
+              <h4>BRIGHT AND COLORFUL</h4>
+              <button class="slider_button_small" type="button" name="button"> VIEW MORE</button>
+            </div>
+            <div class="col-4 autumn d-flex flex-column align-items-center justify-content-end">
+              <h2>Autumn Collection</h2>
+              <h4>RICH AND COMFORTABLE</h4>
+              <button class="slider_button_small" type="button" name="button"> VIEW MORE</button>
+            </div>
+
+          </div>
+      </section>
+      <!-- bestseller -->
+      <section class="product bestseller">
+        <div class="container">
+          <div class="row d-flex ">
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <div class="lines"></div>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <h2> Best Seller</h2>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center">
+                <div class="lines"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col  d-flex  align-items-center justify-content-center">
+                <p>Must have products from our top sellers</p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-1  d-flex align-items-center justify-content-end">
+              <div class="arrow_box d-flex align-items-center justify-content-center">
+                <i class="fas fa-chevron-left"></i>
+              </div>
+            </div>
+            <div class="col-10 d-flex align-items-center justify-content-center">
+                <div class="top-seller  "
+                      v-for=" product in topProduct">
+                  <div class="product-box">
+                    <div class=" img d-flex  align-items-end justify-content-center">
+                      <img :src="product.img" alt="product.name">
+                    </div>
+                    <div class="  bs_img-overlay  d-flex  flex-column  align-items-center justify-content-end">
+                      <div class=" bs_product_text d-flex flex-column align-items-center justify-content-center">
+                        <h3> {{product.name}}</h3>
+                        <span>{{product.tags}}</span>
+                        <h3>{{product.price}}</h3>
+                      </div>
+                      <div class="bs_button d-flex  justify-content-center">
+                        <a href="#" > <i class="fas fa-shopping-cart"> Add to cart</i></a>
+                        <a href="#"> <i class="fas fa-ellipsis-v"> Details</i></a>
+                      </div>
+                    </div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-start">
+              <div class="arrow_box d-flex align-items-center justify-content-center">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </section>
+      <!-- cta discount -->
+      <section class='cta_discount'>
+        <div class=" row">
+          <div class=" col-6 d-flex align-items-center justify-content-end">
+            <div class="seventy_off">
+              <div class="promotion_text d-flex flex-column flex-nowrap align-items-start justify-content-center">
+                <h2>70% Off </h2>
+                <p> Vivamus tempor leo lacus, feugiat ut magna aliquam erat.</p>
+                <button class="slider_button_small" type="button" name="button"> VIEW MORE</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="  col-6 d-flex align-items-center justify-content-start">
+            <div class="free_shipping ">
+              <div class="promotion_text">
+                <h2>Free Shipping </h2>
+                <p> Vivamus tempor leo lacus, feugiat ut magna aliquam erat.</p>
+                <button class="slider_button_small" type="button" name="button"> VIEW MORE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- new arrivals  -->
+      <section class="new_arrivals">
+        <div class="container">
+          <div class="row d-flex ">
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <div class="lines"></div>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center  ">
+                <h2> New Arrivals</h2>
+            </div>
+            <div class="col-4 d-flex  align-items-center justify-content-center">
+                <div class="lines"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col  d-flex  align-items-center justify-content-center">
+                <p>Brand new products from top designers</p>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-1  d-flex align-items-center justify-content-end">
+              <div class="arrow_box d-flex align-items-center justify-content-center">
+                <i class="fas fa-chevron-left"></i>
+              </div>
+            </div>
+            <div class="col-10 d-flex align-items-center justify-content-center">
+                <div class="top-seller  "
+                      v-for=" product in topProduct">
+                  <div class="product-box">
+                    <div class=" img d-flex  align-items-end justify-content-center">
+                      <img :src="product.img" alt="product.name">
+                    </div>
+                    <div class="  bs_img-overlay  d-flex  flex-column  align-items-center justify-content-end">
+                      <div class=" bs_product_text d-flex flex-column align-items-center justify-content-center">
+                        <h3> {{product.name}}</h3>
+                        <span>{{product.tags}}</span>
+                        <h3>{{product.price}}</h3>
+                      </div>
+                      <div class="bs_button d-flex  justify-content-center">
+                        <a href="#" > <i class="fas fa-shopping-cart"> Add to cart</i></a>
+                        <a href="#"> <i class="fas fa-ellipsis-v"> Details</i></a>
+                      </div>
+                    </div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-start">
+              <div class="arrow_box d-flex align-items-center justify-content-center">
+                <i class="fas fa-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+      <!-- feedback -->
+      <section class="feedback">
+        <div class="row">
+          <div class="col d-flex align-items-center justify-content-center">
+            <div class="feed d-flex flex-column align-items-center justify-content-center">
+              <img src="img/dario.png" alt="">
+              <p> Curabitur non tristique tortor. Vestibulum aliquet suscipit ipsum in volutpat. Donec vel lacinia sem, vitae semper nulla. In hac habitasse platea dictumst. Mauris consectetur est et nibh sadip hendrerit bibendum. </p>
+              <p> <strong> Darío Pineda,</strong> Theme Fusion</p>
+              <div class="point">
+                <i class="fas fa-circle"></i>
+                <i class="far fa-circle"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+      <!-- blog -->
+      <section class= "blog d-flex  flex-column align-items-center justify-content-center">
+        <div class="row  ">
+          <div class="col-4 d-flex  align-items-center justify-content-center  ">
+              <div class="lines"></div>
+          </div>
+          <div class="col-4 d-flex  align-items-center justify-content-center  ">
+              <h2> From Our Blog</h2>
+          </div>
+          <div class="col-4 d-flex  align-items-center justify-content-center">
+              <div class="lines"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col  d-flex  align-items-center justify-content-center">
+              <p>The latest Classic Shop newss</p>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex align-items-center justify-content-center">
+            <div class="post "
+                  v-for='post in blogPost'>
+              <img :src="post.img" :alt="post.title">
+              <h5> {{post.title}}</h5>
+              <h6> {{post.date}} | {{post.comment}} Comments</h6>
+              <p> {{post.summary}} </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <!-- summary -->
+      <section class="summary d-flex  flex-column align-items-center justify-content-center">
+        <div class="row">
+          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+            <h2> FEATURED</h2>
+            <ul v-for="product in featured" class=" d-flex align-items-center justify-content-center">
+              <li class="  d-flex  ">
+                <div class="  t-p-p d-flex flex-column">
+                  <h5> {{product.name}}</h5>
+                  <div class="star">
+                    <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 2 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 3 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 4 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point == 5 ? 'fas' : 'd-none' "></i>
+                  </div>
+                  <div class="price">
+                    <span>{{product.realPrice}}</span>
+                    <span>{{product.price}}</span>
+                  </div>
+                </div>
+                <div class="p-i d-flex align-items-center justify-content-end">
+                  <img :src="product.img" :alt="product.name">
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+            <h2> ON SALE</h2>
+            <ul v-for="product in onSale" class=" d-flex align-items-center justify-content-center">
+              <li class="  d-flex  ">
+                <div class="  t-p-p d-flex flex-column">
+                  <h5> {{product.name}}</h5>
+                  <div class="star">
+                    <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 2 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 3 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 4 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point == 5 ? 'fas' : 'd-none' "></i>
+                  </div>
+                  <div class="price">
+                    <span>{{product.realPrice}}</span>
+                    <span>{{product.price}}</span>
+                  </div>
+                </div>
+                <div class="p-i d-flex align-items-center justify-content-end">
+                  <img :src="product.img" :alt="product.name">
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+            <h2> TOP REATED</h2>
+            <ul v-for="product in topReated" class=" d-flex align-items-center justify-content-center">
+              <li class="  d-flex  ">
+                <div class="  t-p-p d-flex flex-column">
+                  <h5> {{product.name}}</h5>
+                  <div class="star">
+                    <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 2 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 3 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 4 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point == 5 ? 'fas' : 'd-none' "></i>
+                  </div>
+                  <div class="price">
+                    <span>{{product.realPrice}}</span>
+                    <span>{{product.price}}</span>
+                  </div>
+                </div>
+                <div class="p-i d-flex align-items-center justify-content-end">
+                  <img :src="product.img" :alt="product.name">
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+            <h2> LATEST REVIEW</h2>
+            <ul v-for="product in latest
+
+
+            " class=" d-flex align-items-center justify-content-center">
+              <li class="  d-flex  ">
+                <div class="  t-p-p d-flex flex-column">
+                  <h5> {{product.name}}</h5>
+                  <div class="star">
+                    <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 2 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 3 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 4 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point == 5 ? 'fas' : 'd-none' "></i>
+                  </div>
+                  <h4>by {{product.reviewBy}}</h4>
+                </div>
+                <div class="p-i d-flex align-items-center justify-content-end">
+                  <img :src="product.img" :alt="product.name">
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+
+      </section>
+      <!-- brand carousel  -->
+      <section class='brand_carousel d-flex  flex-column align-items-center justify-content-center'>
+        <div class="row flex-column align-items-center justify-content-center">
+          <div class="col d-flex align-items-center justify-content-center">
+            <h2>BRAND LOGOS</h2>
+          </div>
+          <div class="col d-flex align-items-center justify-content-center">
+              <ul v-for=' logo in brand '>
+                <li>
+                  <img :src="logo.logo" :alt="logo.name">
+                </li>
+              </ul>
+               </div>
+          </div>
+
+
+      </section>
+      <!-- newsletter -->
+      <section class="newsletter d-flex  flex-column align-items-center justify-content-center ">
+        <div class="row">
+          <div class="col  d-flex align-items-center justify-content-center">
+            <div class="circle">
+              <i class="far fa-envelope"></i>
+            </div>
+            <h2> Subscribe now and get special offers</h2>
+            <input type="text" name="" value="" placeholder="Insert your email">
+            <button class="button_first" type="button" name="button"> SEND</button>
+          </div>
+        </div>
+      </section>
+       <!-- footer -->
+      <footer  class=" footer d-flex flex-column align-items-center justify-content-center">
+        <div class="row d-flex  align-items-center justify-content-center">
+          <div class="col-3 first_column">
+            <img src="img/logof.png" alt="logo bianco">
+            <p> 12345 North Main Street, <br>
+                New York, NY 555555 <br>
+                Phone: 1.800.555.6789 <br>
+                Email: info@company.com <br>
+                Web: Theme-fusion.com</p>
+             <div class="social_footer d-flex justify-content-center align-items-center"
+                     v-for='icon in icons'>
+                  <a :href="icon.src">
+                    <i :class='icon.class'></i>
+                  </a>
+              </div>
+
+          </div>
+          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+            <h2> TOP REATED </h2>
+            <ul v-for="product in topReated" class=" d-flex align-items-center justify-content-center">
+              <li class="  d-flex  ">
+                <div class="  t-p-p d-flex flex-column">
+                  <h5> {{product.name}}</h5>
+                  <div class="star">
+                    <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 2 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 3 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point >= 4 ? 'fas' : 'd-none' "></i>
+                    <i class=" fa-star" :class="product.point == 5 ? 'fas' : 'd-none' "></i>
+                  </div>
+                  <div class="price">
+                    <span>{{product.realPrice}}</span>
+                    <span>{{product.price}}</span>
+                  </div>
+                </div>
+                <div class="p-i d-flex align-items-center justify-content-end">
+                  <img :src="product.img" :alt="product.name">
+                </div>
+              </li>
+            </ul>
+
+          </div>
+          <div class="col-3">
+
+          </div>
+          <div class="col-3">
+
+          </div>
+
+        </div>
+
+      </footer>
 
     </div>
   <!-- JS -->

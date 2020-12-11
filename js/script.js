@@ -7,24 +7,41 @@ const avadaShop = new Vue ({
     cartLinks:[...cartMenu],
     navLinks:[...navMenu],
     slider:[...sliderImg],
-    imageIndex: 0,
+    topProduct:[...topSeller],
+    blogPost:[...post],
+    latest:[...latestReviewProduct],
+    topReated:[...topRatedProduct],
+    onSale:[...onSaleProduct],
+    featured:[...featuredProduct],
+    brand:[...brandLogos],
     activeNav: false,
-    
-
-
-
-
+    imageIndex:0,
 
   },
-  methods:{
-    toggleNavClass(){
-            if(this.activeNav == false){
-              return 'nav'
-            } else {
-              return 'sticky-nav'
-            }
 
-        },
+  methods:{
+
+
+    prev: function(){
+            if(this.imageIndex === 0){
+               this.imageIndex =  this.slider.length
+            } else {
+              this.imageIndex --;
+            }
+           // this.imgActive = (this.imagesIndex === 0) ?
+           //                             this.imagesIndex = this.images.length - 1 :
+           //                             this.imagesIndex - 1;
+         },
+
+     next: function(){
+          if ( this.imagesIndex === this.slider.lenght ){
+              this.imagesIndex = 0;
+          }else{
+            this.imagesIndex + 1;
+          }
+         },
+
+
 
 
 
@@ -38,7 +55,9 @@ const avadaShop = new Vue ({
             this.activeNav = false;
           }
         }
-      }
+      },
+
+
 
 
 
