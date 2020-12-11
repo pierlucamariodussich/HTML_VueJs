@@ -541,7 +541,7 @@
       </section>
        <!-- footer -->
       <footer  class=" footer d-flex flex-column align-items-center justify-content-center">
-        <div class="row d-flex  align-items-center justify-content-center">
+        <div class="row d-flex  align-items-start justify-content-start">
           <div class="col-3 first_column">
             <img src="img/logof.png" alt="logo bianco">
             <p> 12345 North Main Street, <br>
@@ -549,19 +549,20 @@
                 Phone: 1.800.555.6789 <br>
                 Email: info@company.com <br>
                 Web: Theme-fusion.com</p>
-             <div class="social_footer d-flex justify-content-center align-items-center"
-                     v-for='icon in icons'>
-                  <a :href="icon.src">
+             <div class="social_footer d-flex  justify-content-start ">
+                  <a v-for='icon in icons'
+                     :href="icon.src"
+                     class="white">
                     <i :class='icon.class'></i>
                   </a>
               </div>
 
           </div>
-          <div class=" col-3 d-flex flex-column align-items-center justify-content-center">
+          <div class=" col-3 d-flex flex-column align-items-start justify-content-center">
             <h2> TOP REATED </h2>
             <ul v-for="product in topReated" class=" d-flex align-items-center justify-content-center">
               <li class="  d-flex  ">
-                <div class="  t-p-p d-flex flex-column">
+                <div class="  t-p-p d-flex flex-column ">
                   <h5> {{product.name}}</h5>
                   <div class="star">
                     <i class=" fa-star" :class="product.point >= 1 ? 'fas' : 'd-none' "></i>
@@ -583,9 +584,29 @@
 
           </div>
           <div class="col-3">
-
+            <h2> RECENT POST</h2>
+            <ul v-for='post in blogPost'>
+              <li>
+                <a href="#">
+                  <i class="fas fa-chevron-right">
+                    <span>{{post.title}}</span>
+                  </i>
+                </a>
+              </li>
+            </ul>
           </div>
           <div class="col-3">
+            <h2> TAGS</h2>
+            <div class="tags-box"
+                  v-for= "tag in tags">
+
+               <div class="">
+
+               </div>
+
+
+            </div>
+
 
           </div>
 
