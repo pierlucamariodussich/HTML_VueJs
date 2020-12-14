@@ -1,4 +1,5 @@
 
+
 const avadaShop = new Vue ({
 
   el:'#root',
@@ -16,31 +17,28 @@ const avadaShop = new Vue ({
     brand:[...brandLogos],
     tags:["Black", "boots", "Brown", "Casual", "D&G", "Fabric", "flowers", "Grey", "hat", "Hipster", "lines"," multi-purpose", "New York","Outdoors", "red", "responsive", "summer", "sweater", "Travel", "Warm White", "winter"],
     activeNav: false,
-    imageIndex:0,
+    imageSlider: sliderImg.map( e => e.src),
+    title: sliderImg.map( e => e.title),
+    subtitle: sliderImg.map( e => e.subtitle),
+    firstButton: sliderImg.map( e => e.firstButton),
+    secondButton:sliderImg.map( e => e.secondButton),
+    imagesIndex: 0,
+
 
   },
 
   methods:{
 
-
     prev: function(){
-            if(this.imageIndex === 0){
-               this.imageIndex =  this.slider.length
-            } else {
-              this.imageIndex --;
-            }
-           // this.imgActive = (this.imagesIndex === 0) ?
-           //                             this.imagesIndex = this.images.length - 1 :
-           //                             this.imagesIndex - 1;
-         },
-
+       this.imagesIndex = (this.imagesIndex === 0) ?
+                                   this.imagesIndex = this.imageSlider.length - 1 :
+                                   this.imagesIndex - 1;
+     },
      next: function(){
-          if ( this.imagesIndex === this.slider.lenght ){
-              this.imagesIndex = 0;
-          }else{
-            this.imagesIndex + 1;
-          }
-         },
+       this.imagesIndex = (this.imagesIndex === this.imageSlider.length -1) ?
+                                   this.imagesIndex = 0 :
+                                   this.imagesIndex + 1;
+     },
 
 
 

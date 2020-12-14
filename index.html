@@ -102,8 +102,8 @@
       </header>
 
       <!-- slider -->
-      <section class="slider d-flex align-items-center">
-          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <section class="slider ">
+          <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner"
                  v-for="(slide,i) in slider">
                <div class="carousel-item"
@@ -136,7 +136,46 @@
                    <i class="fas fa-chevron-right"></i>
                  </a>
              </div>
+          </div> -->
+
+          <img :src="imageSlider[imagesIndex]" alt="">
+          <div class="row ">
+            <div class="col-1  d-flex align-items-center justify-content-start">
+              <div class="input  d-flex align-items-center justify-content-center">
+                <a href="#"
+                   @click='prev'
+                >
+                  <i class="fas fa-chevron-left"></i>
+                </a>
+              </div>
+
+            </div>
+            <div class="col-10  d-flex align-items-center justify-content-center">
+              <div class="slide d-flex  flex-column align-items-center justify-content-center">
+                <h2>{{title[imagesIndex]}}</h2>
+                <p>{{subtitle[imagesIndex]}}</p>
+                <div v-if="secondButton[imagesIndex] != '' ">
+                  <button class="slider_button"type="button" name="button">{{firstButton[imagesIndex]}}</button>
+                  <button class="slider_button"type="button" name="button">{{secondButton[imagesIndex]}}</button>
+                </div>
+                <div v-else class="buttons">
+                  <button class="slider_button"type="button" name="button">{{firstButton[imagesIndex]}}</button>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-1 d-flex align-items-center justify-content-end">
+              <div class=" input d-flex align-items-center justify-content-center">
+                <a href="#"
+                   @click='next'
+                >
+                  <i class="fas fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
+
       </section>
 
       <!-- featured -->
@@ -219,9 +258,9 @@
 
           </div>
       </section>
+
       <!-- bestseller -->
-      <section class="product bestseller">
-        <div class="container">
+      <section class=" bestseller">
           <div class="row d-flex ">
             <div class="col-4 d-flex  align-items-center justify-content-center  ">
                 <div class="lines"></div>
@@ -255,7 +294,7 @@
                       <div class=" bs_product_text d-flex flex-column align-items-center justify-content-center">
                         <h3> {{product.name}}</h3>
                         <span>{{product.tags}}</span>
-                        <h3>{{product.price}}</h3>
+                        <h2>{{product.price}}</h2>
                       </div>
                       <div class="bs_button d-flex  justify-content-center">
                         <a href="#" > <i class="fas fa-shopping-cart"> Add to cart</i></a>
@@ -271,10 +310,6 @@
               </div>
             </div>
           </div>
-
-
-
-        </div>
       </section>
       <!-- cta discount -->
       <section class='cta_discount'>
@@ -302,7 +337,6 @@
       </section>
       <!-- new arrivals  -->
       <section class="new_arrivals">
-        <div class="container">
           <div class="row d-flex ">
             <div class="col-4 d-flex  align-items-center justify-content-center  ">
                 <div class="lines"></div>
@@ -336,7 +370,7 @@
                       <div class=" bs_product_text d-flex flex-column align-items-center justify-content-center">
                         <h3> {{product.name}}</h3>
                         <span>{{product.tags}}</span>
-                        <h3>{{product.price}}</h3>
+                        <h2>{{product.price}}</h2>
                       </div>
                       <div class="bs_button d-flex  justify-content-center">
                         <a href="#" > <i class="fas fa-shopping-cart"> Add to cart</i></a>
@@ -352,9 +386,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-
       </section>
       <!-- feedback -->
       <section class="feedback">

@@ -97,7 +97,6 @@ const sliderImg=[
   {
     name: 'background',
     src: 'img/slide1.jpg',
-    active: false,
     title: 'Avada Classic Shop',
     subtitle:'SHOW YOUR PRODUCTS WITH STYLE',
     firstButton:'GET AVADA NOW!',
@@ -108,7 +107,6 @@ const sliderImg=[
   {
     name: 'men and women',
     src: 'img/slide2.jpg',
-    active:false,
     title: 'Lookbook 2015',
     subtitle:'SHOW YOUR PRODUCTS WITH STYLE',
     firstButton:'MEN',
@@ -119,7 +117,6 @@ const sliderImg=[
   {
     name: 'new collection',
     src: 'img/slide3.jpg',
-    active:false,
     title: 'Brand New Arrivals',
     subtitle:'NEW COLLECTION FROM NEW YORK',
     firstButton:'VIEW ALL',
