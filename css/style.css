@@ -7,9 +7,7 @@
 } */
 
 /* CSS */
-.debug{
-  border:1px solid black;
-}
+
 body{
   font-family: 'Lato', sans-serif;
   margin: 0;
@@ -201,6 +199,8 @@ margin-right: 5px;
   height: 15vh;
   margin: 0;
   padding:0;
+  border-top: 3px solid white;
+  border-bottom: 3px solid white;
 }
 .nav_menu > ul:hover {
   border-top: 3px solid #427ed5
@@ -351,15 +351,12 @@ margin-right: 5px;
 .slide > h2{
   font-size: 80px;
   font-weight: 800;
-
 }
+
 .slide > p{
   font-size: 24px;
   font-weight: 400;
 }
-
-
-
 
 
  /* featured product */
@@ -418,8 +415,6 @@ margin-right: 5px;
   font-size: 15px;
   font-weight: 800;
 }
-
-
 
 .top-seller .productbox-box{
   height: 280px;
